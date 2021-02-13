@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<animations:PopupPage xmlns:animations="http://rotorgames.com"
+                      xmlns="http://xamarin.com/schemas/2014/forms"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"                      
+                      x:Class="VentaRealApp.Views.ClientAddEditPopupPage">
+
+    <StackLayout BackgroundColor="White"
+                 HeightRequest="200"
+                 WidthRequest="300"
+                 HorizontalOptions="CenterAndExpand"
+                 VerticalOptions="CenterAndExpand">
+        <StackLayout HorizontalOptions="CenterAndExpand"
+                     VerticalOptions="CenterAndExpand">
+            <Label Text="{Binding Title}" FontSize="20" HorizontalOptions="Center" FontAttributes="Bold"/>
+            <Entry Keyboard="Text" Placeholder="Nombre" Text="{Binding Client.Nombre}"/>
+            <StackLayout Orientation="Horizontal">
+                <Button Command="{Binding AddEditClientCommand}"
+                    Text="Save"/>
+                <Button Command="{Binding ClosePopupCommand}"
+                    BackgroundColor="Red"
+                    Text="Close"/>
+            </StackLayout>
+        </StackLayout>
+                
+    </StackLayout>
+
+</animations:PopupPage>

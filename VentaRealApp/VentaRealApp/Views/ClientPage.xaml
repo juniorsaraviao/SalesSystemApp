@@ -1,0 +1,145 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:viewmodels="clr-namespace:VentaRealApp.ViewModels"
+             x:Class="VentaRealApp.Views.ClientPage"
+             Title="Clients"
+             x:Name="ThisPage">
+
+    <ContentPage.BindingContext>
+        <viewmodels:ClientPageViewModel/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Add Client" Command="{Binding AddClientPopup}" />
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+        <Grid Margin="0,0,0,10">
+            <StackLayout>
+
+                <!--<StackLayout HorizontalOptions="CenterAndExpand"
+                             VerticalOptions="StartAndExpand"
+                             Margin="0,5,0,5">
+                    <Button Text="Add Client"
+                            TextColor="White"
+                            BackgroundColor="#009FD9"
+                            Command="{Binding AddClientPopup}"/>
+                </StackLayout>-->
+
+                <ScrollView>
+                    <CollectionView ItemsSource="{Binding ClientList}"
+                                    BackgroundColor="Transparent"
+                                    VerticalOptions="StartAndExpand"
+                                    HorizontalOptions="FillAndExpand"
+                                    Margin="20">
+                        <CollectionView.ItemsLayout>
+                            <LinearItemsLayout Orientation="Vertical"
+                                               ItemSpacing="10"/>
+                        </CollectionView.ItemsLayout>
+
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <SwipeView>
+                                    <SwipeView.LeftItems>
+                                        <SwipeItems>
+                                            <SwipeItemView>
+                                                <Grid WidthRequest="80">
+                                                    <BoxView CornerRadius="12,0,12,0"
+                                                         BackgroundColor="LightGreen">
+                                                        <BoxView.GestureRecognizers>
+                                                            <TapGestureRecognizer Command="{Binding Source={x:Reference ThisPage}, 
+                                                                                        Path=BindingContext.EditCommand}"
+                                                                                  CommandParameter="{Binding .}"/>
+                                                        </BoxView.GestureRecognizers>
+                                                    </BoxView>
+                                                    <Label HorizontalTextAlignment="Center"
+                                                           HorizontalOptions="Center"
+                                                           VerticalOptions="Center">
+                                                        <Label.FormattedText>
+                                                            <FormattedString>
+                                                                <Span Text="{Binding Source={x:Reference ThisPage}, Path=BindingContext.EditIcon}"
+                                                                      FontFamily="FAFree-Regular"/>
+                                                                <Span Text="Edit"
+                                                                      FontAttributes="Bold"
+                                                                      FontSize="15"/>
+                                                            </FormattedString>
+                                                        </Label.FormattedText>
+
+                                                        <Label.GestureRecognizers>
+                                                            <TapGestureRecognizer Command="{Binding Source={x:Reference ThisPage}, 
+                                                                                        Path=BindingContext.EditCommand}"
+                                                                                  CommandParameter="{Binding .}"/>
+                                                        </Label.GestureRecognizers>
+                                                    </Label>
+                                                </Grid>
+                                            </SwipeItemView>
+                                        </SwipeItems>
+                                    </SwipeView.LeftItems>
+
+                                    <SwipeView.RightItems>
+                                        <SwipeItems Mode="Reveal">
+                                            <SwipeItemView>
+                                                <Grid WidthRequest="80">
+                                                    <BoxView CornerRadius="0,12,0,12"
+                                                             BackgroundColor="LightPink">
+                                                        <BoxView.GestureRecognizers>
+                                                            <TapGestureRecognizer Command="{Binding Source={x:Reference ThisPage}, 
+                                                                                        Path=BindingContext.DeleteCommand}"
+                                                                                  CommandParameter="{Binding .}"/>
+                                                        </BoxView.GestureRecognizers>
+                                                    </BoxView>
+                                                    <Label HorizontalTextAlignment="Center"
+                                                           HorizontalOptions="Center"
+                                                           VerticalOptions="Center">
+                                                        <Label.FormattedText>
+                                                            <FormattedString>
+                                                                <Span Text="{Binding Source={x:Reference ThisPage}, Path=BindingContext.DeleteIcon}" 
+                                                                      FontFamily="FAFree-Solid"/>
+                                                                <Span Text="Delete"
+                                                                      FontAttributes="Bold"
+                                                                      FontSize="15"/>
+                                                            </FormattedString>
+                                                        </Label.FormattedText>
+
+                                                        <Label.GestureRecognizers>
+                                                            <TapGestureRecognizer Command="{Binding Source={x:Reference ThisPage}, 
+                                                                                        Path=BindingContext.DeleteCommand}"
+                                                                                  CommandParameter="{Binding .}"/>
+                                                        </Label.GestureRecognizers>
+                                                    </Label>
+                                                </Grid>
+                                            </SwipeItemView>
+                                        </SwipeItems>
+                                    </SwipeView.RightItems>
+
+                                    <SwipeView.Content HorizontalOptions="CenterAndExpand"
+                                           VerticalOptions="CenterAndExpand">
+                                        <Frame CornerRadius="12"
+                                               Padding="12"
+                                               HeightRequest="50"
+                                               BackgroundColor="Yellow"
+                                               HorizontalOptions="CenterAndExpand"
+                                               VerticalOptions="CenterAndExpand"
+                                               HasShadow="False">
+                                            <StackLayout HorizontalOptions="CenterAndExpand"
+                                                     VerticalOptions="CenterAndExpand">
+                                                <Label Text="{Binding Nombre}"
+                                                       FontAttributes="Bold"
+                                                       FontSize="20"
+                                                       HorizontalTextAlignment="Center"/>
+                                            </StackLayout>
+                                        </Frame>
+                                    </SwipeView.Content>
+                                </SwipeView>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </ScrollView>
+
+                
+
+            </StackLayout>            
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
